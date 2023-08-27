@@ -37,11 +37,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final fb = FirebaseDatabase.instance;
-  TextEditingController second = TextEditingController();
-  TextEditingController third = TextEditingController();
-  TextEditingController fourth = TextEditingController();
-  TextEditingController fifth = TextEditingController();
-  TextEditingController sixth = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController batch = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController address = TextEditingController();
   var l;
   var g;
   var k;
@@ -149,7 +149,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(border: Border.all()),
                             child: TextField(
-                              controller: second,
+                              controller: name,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 hintText: 'Name',
@@ -163,7 +163,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(border: Border.all()),
                             child: TextField(
-                              controller: third,
+                              controller: batch,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 hintText: 'Batch',
@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(border: Border.all()),
                             child: TextField(
-                              controller: fourth,
+                              controller: email,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 hintText: 'Email',
@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(border: Border.all()),
                             child: TextField(
-                              controller: fifth,
+                              controller: phoneNumber,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 hintText: 'Phone number',
@@ -205,7 +205,7 @@ class _HomeState extends State<Home> {
                           child: Container(
                             decoration: BoxDecoration(border: Border.all()),
                             child: TextField(
-                              controller: sixth,
+                              controller: address,
                               textAlign: TextAlign.center,
                               decoration: InputDecoration(
                                 hintText: 'Address',
@@ -270,7 +270,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l[1],
+                        l[4],
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -283,7 +283,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        "Email: ${l[3]}", // Add extra text field 2
+                        "Email: ${l[0]}", // Add extra text field 2
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -298,7 +298,7 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   subtitle: Text(
-                    "Address: ${l[4]}", // Add extra text field 3
+                    "Address: ${l[1]}", // Add extra text field 3
                     style: TextStyle(
                       fontSize: 18,
                     ),
@@ -317,16 +317,16 @@ class _HomeState extends State<Home> {
 
 // Only update the name, leave the age and address!
     await ref1.update({
-      "Name": second.text,
-      "Batch": third.text,
-      "Email": fourth.text,
-      "Phone number": fifth.text,
-      "Address": sixth.text,
+      "Name": name.text,
+      "Batch": batch.text,
+      "Email": email.text,
+      "Phone number": phoneNumber.text,
+      "Address": address.text,
     });
-    second.clear();
-    third.clear();
-    fourth.clear();
-    fifth.clear();
-    sixth.clear();
+    name.clear();
+    batch.clear();
+    email.clear();
+    phoneNumber.clear();
+    address.clear();
   }
 }

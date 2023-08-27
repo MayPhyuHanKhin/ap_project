@@ -149,10 +149,7 @@ class _LogInPageState extends State<LogInPage> {
                     Center(
                       child:ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _logIn(context);
-                            Navigator.pushNamed(context, '/home', arguments: _emailController);
-                          }
+                          _logIn(context);
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.lightBlueAccent,

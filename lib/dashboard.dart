@@ -20,9 +20,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "todo app",
+      title: "Student's records",
       theme: ThemeData(
-        primaryColor: Colors.greenAccent[700],
+        primaryColor: Colors.lightBlueAccent,
       ),
       home: Home(),
       debugShowCheckedModeBanner: false,
@@ -38,18 +38,20 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final fb = FirebaseDatabase.instance;
   TextEditingController second = TextEditingController();
-
   TextEditingController third = TextEditingController();
+  TextEditingController fourth = TextEditingController();
+  TextEditingController fifth = TextEditingController();
+  TextEditingController sixth = TextEditingController();
   var l;
   var g;
   var k;
   @override
   Widget build(BuildContext context) {
-    final ref = fb.ref().child('todos');
+    final ref = fb.ref().child('Records');
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.indigo[900],
+        backgroundColor: Colors.lightBlue,
         onPressed: () {
           Navigator.pushReplacement(
             context,
@@ -64,25 +66,69 @@ class _HomeState extends State<Home> {
       ),
       appBar: AppBar(
         title: Text(
-          'Todos',
+          'Dashboard',
           style: TextStyle(
             fontSize: 30,
           ),
         ),
-        backgroundColor: Colors.indigo[900],
+        backgroundColor: Colors.lightBlueAccent,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              height: 80, // Set the desired height here
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.lightBlueAccent,
+                ),
+                child: Text(
+                  'GUSTO',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/welcome');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: const Text('SignUp'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/Signup');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.login),
+              title: const Text('LogIn'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/Login');
+              },
+            ),
+          ],
+        ),
       ),
       body: FirebaseAnimatedList(
         query: ref,
         shrinkWrap: true,
         itemBuilder: (context, snapshot, animation, index) {
           var v =
-          snapshot.value.toString(); // {subtitle: webfun, title: subscribe}
+              snapshot.value.toString(); // {subtitle: webfun, title: subscribe}
 
           g = v.replaceAll(
-              RegExp("{|}|subtitle: |title: "), ""); // webfun, subscribe
+              RegExp("{|}|Batch: |Name: |Email: |Phone number: |Address: "),
+              "");
           g.trim();
 
-          l = g.split(','); // [webfun,  subscribe}]
+          l = g.split(',');
 
           return GestureDetector(
             onTap: () {
@@ -93,24 +139,81 @@ class _HomeState extends State<Home> {
               showDialog(
                 context: context,
                 builder: (ctx) => AlertDialog(
-                  title: Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: TextField(
-                      controller: second,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: 'title',
-                      ),
-                    ),
-                  ),
-                  content: Container(
-                    decoration: BoxDecoration(border: Border.all()),
-                    child: TextField(
-                      controller: third,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: 'sub title',
-                      ),
+                  content: SingleChildScrollView(
+                    // Wrap content in SingleChildScrollView
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding:
+                              const EdgeInsets.all(8.0), // Add padding here
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: TextField(
+                              controller: second,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: 'Name',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.all(8.0), // Add padding here
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: TextField(
+                              controller: third,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: 'Batch',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.all(8.0), // Add padding here
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: TextField(
+                              controller: fourth,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: 'Email',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.all(8.0), // Add padding here
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: TextField(
+                              controller: fifth,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: 'Phone number',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.all(8.0), // Add padding here
+                          child: Container(
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: TextField(
+                              controller: sixth,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: 'Address',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   actions: <Widget>[
@@ -118,7 +221,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         Navigator.of(ctx).pop();
                       },
-                      color: Color.fromARGB(255, 0, 22, 145),
+                      color: Colors.lightBlueAccent,
                       child: Text(
                         "Cancel",
                         style: TextStyle(
@@ -131,7 +234,7 @@ class _HomeState extends State<Home> {
                         await upd();
                         Navigator.of(ctx).pop();
                       },
-                      color: Color.fromARGB(255, 0, 22, 145),
+                      color: Colors.lightBlueAccent,
                       child: Text(
                         "Update",
                         style: TextStyle(
@@ -145,7 +248,7 @@ class _HomeState extends State<Home> {
             },
             child: Container(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: ListTile(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -153,31 +256,51 @@ class _HomeState extends State<Home> {
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  tileColor: Colors.indigo[100],
+                  tileColor: Colors.grey[300],
                   trailing: IconButton(
                     icon: Icon(
                       Icons.delete,
-                      color: Color.fromARGB(255, 255, 0, 0),
+                      color: Colors.black,
                     ),
                     onPressed: () {
                       ref.child(snapshot.key!).remove();
                     },
                   ),
-                  title: Text(
-                    l[1],
-                    // 'dd',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l[1],
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Batch: ${l[2]}", // Add extra text field 1
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        "Email: ${l[3]}", // Add extra text field 2
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        "Phone number: ${l[3]}", // Add extra text field 2
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      // Add more additional fields as needed
+                    ],
                   ),
                   subtitle: Text(
-                    l[0],
-                    // 'dd',
-
+                    "Address: ${l[4]}", // Add extra text field 3
                     style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
                   ),
                 ),
@@ -190,14 +313,20 @@ class _HomeState extends State<Home> {
   }
 
   upd() async {
-    DatabaseReference ref1 = FirebaseDatabase.instance.ref("todos/$k");
+    DatabaseReference ref1 = FirebaseDatabase.instance.ref("Records/$k");
 
 // Only update the name, leave the age and address!
     await ref1.update({
-      "title": second.text,
-      "subtitle": third.text,
+      "Name": second.text,
+      "Batch": third.text,
+      "Email": fourth.text,
+      "Phone number": fifth.text,
+      "Address": sixth.text,
     });
     second.clear();
     third.clear();
+    fourth.clear();
+    fifth.clear();
+    sixth.clear();
   }
 }

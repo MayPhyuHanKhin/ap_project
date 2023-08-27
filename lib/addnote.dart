@@ -11,8 +11,10 @@ class addnote extends StatefulWidget {
 
 class _addnoteState extends State<addnote> {
   TextEditingController second = TextEditingController();
-
   TextEditingController third = TextEditingController();
+  TextEditingController fourth = TextEditingController();
+  TextEditingController fifth = TextEditingController();
+  TextEditingController sixth = TextEditingController();
 
   final fb = FirebaseDatabase.instance;
   @override
@@ -20,12 +22,12 @@ class _addnoteState extends State<addnote> {
     var rng = Random();
     var k = rng.nextInt(10000);
 
-    final ref = fb.ref().child('todos/$k');
+    final ref = fb.ref().child('Records/$k');
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Todos"),
-        backgroundColor: Colors.indigo[900],
+        title: Text("Add Info"),
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body: Container(
         child: Column(
@@ -38,7 +40,7 @@ class _addnoteState extends State<addnote> {
               child: TextField(
                 controller: second,
                 decoration: InputDecoration(
-                  hintText: 'title',
+                  hintText: 'Name',
                 ),
               ),
             ),
@@ -50,7 +52,43 @@ class _addnoteState extends State<addnote> {
               child: TextField(
                 controller: third,
                 decoration: InputDecoration(
-                  hintText: 'sub title',
+                  hintText: 'Batch',
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: TextField(
+                controller: fourth,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: TextField(
+                controller: fifth,
+                decoration: InputDecoration(
+                  hintText: 'Phone number',
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: TextField(
+                controller: sixth,
+                decoration: InputDecoration(
+                  hintText: 'Address',
                 ),
               ),
             ),
@@ -58,11 +96,14 @@ class _addnoteState extends State<addnote> {
               height: 10,
             ),
             MaterialButton(
-              color: Colors.indigo[900],
+              color: Colors.lightBlueAccent,
               onPressed: () {
                 ref.set({
-                  "title": second.text,
-                  "subtitle": third.text,
+                  "Name": second.text,
+                  "Batch": third.text,
+                  "Email": fourth.text,
+                  "Phone number": fifth.text,
+                  "Address": sixth.text,
                 }).asStream();
                 Navigator.pushReplacement(
                     context, MaterialPageRoute(builder: (_) => Home()));

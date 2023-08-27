@@ -5,6 +5,7 @@ import 'dashboard.dart';
 import 'login.dart';
 import 'signup.dart';
 import 'welcomepage.dart';
+import 'addnote.dart';
 
 
 void main() async {
@@ -25,7 +26,6 @@ class MyApp extends StatelessWidget {
         '/Signup': (context) => SignUpPage(),
         '/Login': (context) => LogInPage(),
         '/home': (context) => Home(),
-        // '/saveinfo': (context) => SaveInfo(),
       },
     );
   }

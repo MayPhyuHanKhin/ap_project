@@ -6,8 +6,8 @@ void main() {
   runApp(MaterialApp(
     home: WelcomePage(),
     routes: {
-      '/Signup': (context)=>SignUpPage(),
-      '/Login': (context)=>LogInPage(),
+      '/Signup': (context) => SignUpPage(),
+      '/Login': (context) => LogInPage(),
     },
   ));
 }
@@ -85,7 +85,6 @@ class WelcomePage extends StatelessWidget {
                       fontFamily: 'OpenSans',
                       fontSize: 23.0,
                       color: Colors.black,
-
                       letterSpacing: 1,
                     ),
                   ),
@@ -93,10 +92,10 @@ class WelcomePage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 50.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0), // Adjust the borderRadius to control the squareness
-                    child: Image.asset('assests/Gusto.jpg',
-                        width: 120.0,
-                        height: 120.0),
+                    borderRadius: BorderRadius.circular(
+                        10.0),
+                    child: Image.asset('assests/gusto.jpg',
+                        width: 120.0, height: 120.0),
                   ),
                 ),
                 Container(
@@ -112,7 +111,6 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Container(
                   margin: EdgeInsets.only(top: 50.0),
                   child: Row(
@@ -120,17 +118,20 @@ class WelcomePage extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/Signup', arguments: 'to Sign Up page');
+                          Navigator.pushNamed(context, '/Signup',
+                              arguments: 'to Sign Up page');
                           print('you clicked the Sign Up button');
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.lightBlueAccent, // Set the background color here
+                          primary: Colors
+                              .lightBlueAccent,
                         ),
                         child: Text('Sign Up'),
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context,'/Login',arguments: 'to LogIn page');
+                          Navigator.pushNamed(context, '/Login',
+                              arguments: 'to LogIn page');
                           print('you clicked the Log In button');
                         },
                         style: ElevatedButton.styleFrom(

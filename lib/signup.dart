@@ -52,10 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
         password: password,
       );
 
-      // Store additional user data in your database if needed
       final userData = {'username': username, 'email': email};
-      // Save userData to your database
-
       // Navigate to the login page
       Navigator.pushNamed(context, '/Login');
     } catch (e) {
@@ -68,6 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sign Up'),
+        centerTitle: true,
         backgroundColor: Colors.lightBlueAccent,
       ),
       drawer: Drawer(
@@ -75,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
           padding: EdgeInsets.zero,
           children: [
             Container(
-              height: 80, // Set the desired height here
+              height: 80,
               child: DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.lightBlueAccent,
@@ -117,7 +115,6 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Center(
           child: Container(
             width: 250,
-            height: 400,
             margin: EdgeInsets.all(50.0),
             padding: EdgeInsets.all(20.0),
             decoration: BoxDecoration(
@@ -143,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: 10.0), // Add padding here
+                        vertical: 10.0),
                     child: TextFormField(
                       controller: _usernameController,
                       decoration: InputDecoration(labelText: 'Username'),

@@ -61,6 +61,7 @@ class _LogInPageState extends State<LogInPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Log In'),
+        centerTitle: true,
         backgroundColor: Colors.lightBlueAccent,
       ),
       drawer: Drawer(
@@ -110,7 +111,6 @@ class _LogInPageState extends State<LogInPage> {
         child: Center(
           child: Container(
             width: 250,
-            height: 300,
             margin: EdgeInsets.all(50.0),
             padding: EdgeInsets.all(20.0),
             decoration: BoxDecoration(
